@@ -11,11 +11,11 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package' 
             }
         }
-    }
-	
-	stage('Deliver') { 
-		steps {
-			sh 'docker run -d --name server-eureka --privileged=true --restart=always -p 8761:8761 -v /var/jenkins_home/workspace/simple-java-maven-app/target/EurekaServerTest-0.0.1-SNAPSHOT.jar:/var/server-eureka-V1.0.1.jar java java -jar /var/server-eureka-V1.0.1.jar' 
+		
+		stage('Deliver') { 
+			steps {
+				sh 'docker run -d --name server-eureka --privileged=true --restart=always -p 8761:8761 -v /var/jenkins_home/workspace/simple-java-maven-app/target/EurekaServerTest-0.0.1-SNAPSHOT.jar:/var/server-eureka-V1.0.1.jar java java -jar /var/server-eureka-V1.0.1.jar' 
+			}
 		}
-	}
+    }
 }
